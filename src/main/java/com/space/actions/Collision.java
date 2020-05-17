@@ -32,9 +32,9 @@ public class Collision {
         Vector3f invaderPosition = invader.getPosition();
         Vector3f laserPosition = laser.getPosition();
 
-        if(laserPosition.getY() > invaderPosition.getY()-0.05f) {
+        if(laserPosition.getY() > invaderPosition.getY() -0.5f) {
             if(laserPosition.getX() >= invaderPosition.getX() -0.6f && laserPosition.getX() <= invaderPosition.getX() + 0.6f) {
-                System.out.println("Collision invaderX: " +invaderPosition.getX() + ", laserX: " + laserPosition.getX());
+                System.out.println("Collision invaderX: " +invaderPosition.getX() + ", laserX: " + laserPosition.getX() + " -  invaderY: " +invaderPosition.getY() + ", laserY: " + laserPosition.getY());
                 invader.setVisible(false);
                 laser.setVisible(false);
             }
