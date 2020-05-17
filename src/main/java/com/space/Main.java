@@ -44,6 +44,7 @@ public class Main implements Runnable {
         enemies.initRow(10);
         enemies.initRow(10);
         enemies.initRow(10);
+        enemies.initRow(10);
     }
 
     public void run() {
