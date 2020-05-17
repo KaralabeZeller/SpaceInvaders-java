@@ -41,6 +41,9 @@ public class Main implements Runnable {
         shader.create();
         enemies = new Enemies();
         enemies.initRow(10);
+        enemies.initRow(10);
+        enemies.initRow(10);
+        enemies.initRow(10);
     }
 
     public void run() {

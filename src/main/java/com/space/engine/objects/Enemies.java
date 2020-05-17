@@ -30,7 +30,7 @@ public class Enemies {
         List<Invader> invaders = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {
-            invaders.add(new Invader(new Vector3f(i*2, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), mesh));
+            invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), mesh));
         }
 
         aliens.put(rows, invaders);
