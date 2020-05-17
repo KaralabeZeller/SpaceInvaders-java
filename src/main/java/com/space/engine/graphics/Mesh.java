@@ -65,6 +65,10 @@ public class Mesh {
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		return bufferID;
 	}
+
+	public void rotate() {
+
+	}
 	
 	public void destroy() {
 		GL15.glDeleteBuffers(pbo);
