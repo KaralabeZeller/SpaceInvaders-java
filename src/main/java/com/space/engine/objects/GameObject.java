@@ -2,6 +2,7 @@ package com.space.engine.objects;
 
 import com.space.engine.graphics.Mesh;
 import com.space.engine.maths.Vector3f;
+import com.space.util.Constants;
 
 public class GameObject {
 	private Vector3f position;
@@ -9,6 +10,8 @@ public class GameObject {
 	private Vector3f scale;
 
 	private boolean visible;
+
+	private Constants.ObjecType objecType;
 
 	private Mesh mesh;
 
@@ -85,6 +88,14 @@ public class GameObject {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+
+	public Constants.ObjecType getObjecType() {
+		return objecType;
+	}
+
+	public void setObjecType(Constants.ObjecType objecType) {
+		this.objecType = objecType;
 	}
 
 }

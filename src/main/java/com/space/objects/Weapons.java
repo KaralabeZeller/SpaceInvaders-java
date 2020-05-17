@@ -26,7 +26,7 @@ public class Weapons {
 
     public void update() {
         weapons.forEach(weapon->weapon.update());
-        weapons.remove(weapons.stream().filter(weapon->!weapon.isVisible()));
+        weapons.remove(weapons.stream().filter(weapon->!weapon.isVisible())); // TODO check if this works
     }
 
 

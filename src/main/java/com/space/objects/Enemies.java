@@ -3,6 +3,7 @@ package com.space.objects;
 import com.space.engine.graphics.Mesh;
 import com.space.engine.io.ModelLoader;
 import com.space.engine.maths.Vector3f;
+import com.space.util.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,17 +37,17 @@ public class Enemies {
 
         for(int i = 0; i < count; i++) {
             if(rows == 0)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh1));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh1, Constants.ObjecType.MONSTER));
             if(rows == 1)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh2));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh2, Constants.ObjecType.MONSTER));
             if(rows == 2)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh3));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh3, Constants.ObjecType.MONSTER));
             if(rows == 3)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh4));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh4, Constants.ObjecType.MONSTER));
             if(rows == 4)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh5));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh5, Constants.ObjecType.MONSTER));
             if(rows == 5)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh6));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh6, Constants.ObjecType.MONSTER));
         }
 
         aliens.put(rows, invaders);

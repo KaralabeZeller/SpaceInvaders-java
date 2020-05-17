@@ -1,5 +1,6 @@
 package com.space;
 
+import com.space.actions.Collision;
 import com.space.engine.graphics.Mesh;
 import com.space.engine.graphics.Renderer;
 import com.space.engine.graphics.Shader;
@@ -28,6 +29,7 @@ public class Main implements Runnable {
     public Enemies enemies;
     public Player player;
     public Weapons weaponry;
+    public Collision collision;
 
 
     public void start() {
@@ -45,6 +47,7 @@ public class Main implements Runnable {
         enemies = new Enemies();
         player = new Player();
         weaponry = new Weapons();
+        collision = new Collision();
 
         enemies.initRow(10);
         enemies.initRow(10);
@@ -70,6 +73,7 @@ public class Main implements Runnable {
         enemies.move(0.01f);
         player.update();
         weaponry.update();
+        collision.detect(enemies, weaponry);
         window.update();
         camera.update();
     }

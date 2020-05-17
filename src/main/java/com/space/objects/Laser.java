@@ -2,6 +2,7 @@ package com.space.objects;
 
 import com.space.engine.io.Input;
 import com.space.engine.maths.Vector3f;
+import com.space.util.Constants;
 import org.lwjgl.glfw.GLFW;
 
 public class Laser extends Pixel {
@@ -10,6 +11,7 @@ public class Laser extends Pixel {
 
     public Laser(Vector3f position) {
         super(position);
+        setObjecType(Constants.ObjecType.LASER);
     }
 
     public void update() {
