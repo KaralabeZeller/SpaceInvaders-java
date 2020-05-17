@@ -1,4 +1,4 @@
-package com.space.engine.objects;
+package com.space.objects;
 
 import com.space.engine.graphics.Mesh;
 import com.space.engine.io.ModelLoader;
@@ -26,12 +26,6 @@ public class Enemies {
     public Enemies() {
         rows = 0;
         aliens = new HashMap<>();
-        invaderMesh1.create();
-        invaderMesh2.create();
-        invaderMesh3.create();
-        invaderMesh4.create();
-        invaderMesh5.create();
-        invaderMesh6.create();
     }
 
     //TODO implement ability to add more rows

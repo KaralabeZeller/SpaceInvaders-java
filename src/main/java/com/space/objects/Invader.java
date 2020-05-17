@@ -1,7 +1,8 @@
-package com.space.engine.objects;
+package com.space.objects;
 
 import com.space.engine.graphics.Mesh;
 import com.space.engine.maths.Vector3f;
+import com.space.engine.objects.GameObject;
 
 public class Invader extends GameObject {
 

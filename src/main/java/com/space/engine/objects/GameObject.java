@@ -15,6 +15,7 @@ public class GameObject {
 		this.rotation = rotation;
 		this.scale = scale;
 		this.mesh = mesh;
+		this.mesh.create();
 	}
 
 	public GameObject(Vector3f position, Vector3f rotation, Vector3f scale) {
@@ -53,6 +54,7 @@ public class GameObject {
 
 	public void setMesh(Mesh mesh) {
 		this.mesh = mesh;
+		this.mesh.create();
 	}
 
 	public void moveX(float x) {
