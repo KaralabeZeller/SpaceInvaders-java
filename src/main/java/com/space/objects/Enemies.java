@@ -22,6 +22,7 @@ public class Enemies {
 
     private Invader sample;
     private boolean right = true;
+    private float moveSpeedY = -0.2f;
 
     public Enemies() {
         rows = 0;
@@ -69,14 +70,14 @@ public class Enemies {
         if(sample.getPosition().getX() > sample.initialX + 2) {
             right = false;
             for(List<Invader> invaders: aliens.values()) {
-                invaders.forEach(invader -> invader.moveY(-0.5f));
+                invaders.forEach(invader -> invader.moveY(moveSpeedY));
             }
             //rotateY(90f);
         }
         if(sample.getPosition().getX() < sample.initialX) {
             right = true;
             for(List<Invader> invaders: aliens.values()) {
-                invaders.forEach(invader -> invader.moveY(-0.5f));
+                invaders.forEach(invader -> invader.moveY(moveSpeedY));
             }
             //rotateY(-90f);
         }

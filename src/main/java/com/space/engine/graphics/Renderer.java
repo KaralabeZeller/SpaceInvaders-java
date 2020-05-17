@@ -19,6 +19,10 @@ public class Renderer {
 	}
 	
 	public void renderMesh(GameObject object, Camera camera) {
+
+		if(!object.isVisible())
+			return;
+
 		GL30.glBindVertexArray(object.getMesh().getVAO());
 		GL30.glEnableVertexAttribArray(0);
 		GL30.glEnableVertexAttribArray(1);

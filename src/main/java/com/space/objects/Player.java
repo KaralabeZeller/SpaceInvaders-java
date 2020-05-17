@@ -10,7 +10,7 @@ import org.lwjgl.glfw.GLFW;
 public class Player extends GameObject {
 
     public Mesh mesh;
-    private float moveSpeed = 0.5f;
+    private float moveSpeed = 0.2f;
 
     public Player() {
         super(new Vector3f(0, -10, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
@@ -19,9 +19,8 @@ public class Player extends GameObject {
     }
     
     public void update() {
-        float x = (float) Math.sin(Math.toRadians(getPosition().getY())) * moveSpeed;
 
-        if (Input.isKeyDown(GLFW.GLFW_KEY_RIGHT)) setPosition(Vector3f.add(getPosition(), new Vector3f(-x, 0, 0)));
-        if (Input.isKeyDown(GLFW.GLFW_KEY_LEFT)) setPosition(Vector3f.add(getPosition(), new Vector3f(x, 0, 0)));
+        if (Input.isKeyDown(GLFW.GLFW_KEY_RIGHT)) setPosition(Vector3f.add(getPosition(), new Vector3f(moveSpeed, 0, 0)));
+        if (Input.isKeyDown(GLFW.GLFW_KEY_LEFT)) setPosition(Vector3f.add(getPosition(), new Vector3f(-moveSpeed, 0, 0)));
     }
 }

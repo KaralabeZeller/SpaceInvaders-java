@@ -11,6 +11,7 @@ import com.space.engine.objects.*;
 import com.space.objects.Enemies;
 import com.space.objects.Invader;
 import com.space.objects.Player;
+import com.space.objects.Weapons;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class Main implements Runnable {
     public Camera camera = new Camera(new Vector3f(10, -5, 10), new Vector3f(0, 0, 0));
     public Enemies enemies;
     public Player player;
+    public Weapons weaponry;
 
 
     public void start() {
@@ -42,6 +44,7 @@ public class Main implements Runnable {
         shader.create();
         enemies = new Enemies();
         player = new Player();
+        weaponry = new Weapons();
 
         enemies.initRow(10);
         enemies.initRow(10);
@@ -58,6 +61,7 @@ public class Main implements Runnable {
             render();
             if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) window.setFullscreen(!window.isFullscreen());
             if (Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) window.mouseState(true);
+            if (Input.isKeyDown(GLFW.GLFW_KEY_SPACE)) weaponry.fire(player.getPosition()); //TODO implement collision detection
         }
         close();
     }
@@ -65,6 +69,7 @@ public class Main implements Runnable {
     private void update() {
         enemies.move(0.01f);
         player.update();
+        weaponry.update();
         window.update();
         camera.update();
     }
@@ -74,6 +79,8 @@ public class Main implements Runnable {
         for(List<Invader> invaders: enemies.aliens.values()) {
             invaders.forEach(invader -> renderer.renderMesh(invader, camera));
         }
+
+        weaponry.weapons.forEach(weapon->renderer.renderMesh(weapon, camera));
         renderer.renderMesh(player , camera);
         window.swapBuffers();
     }
@@ -83,6 +90,7 @@ public class Main implements Runnable {
         enemies.destroy();
         player.destroy();
         shader.destroy();
+        weaponry.destroy();
     }
 
     public static void main(String[] args) {

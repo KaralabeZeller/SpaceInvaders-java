@@ -8,6 +8,8 @@ public class GameObject {
 	private Vector3f rotation;
 	private Vector3f scale;
 
+	private boolean visible;
+
 	private Mesh mesh;
 
 	public GameObject(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh) {
@@ -16,12 +18,16 @@ public class GameObject {
 		this.scale = scale;
 		this.mesh = mesh;
 		this.mesh.create();
+
+		setVisible(true);
 	}
 
 	public GameObject(Vector3f position, Vector3f rotation, Vector3f scale) {
 		this.rotation = rotation;
 		this.scale = scale;
 		this.position = position;
+
+		setVisible(true);
 	}
 
 	public void update() {
@@ -71,6 +77,14 @@ public class GameObject {
 
 	public void destroy() {
 		mesh.destroy();
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 }
