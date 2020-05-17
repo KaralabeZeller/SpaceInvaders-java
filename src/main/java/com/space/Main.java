@@ -7,11 +7,9 @@ import com.space.engine.io.Input;
 import com.space.engine.io.ModelLoader;
 import com.space.engine.io.Window;
 import com.space.engine.maths.Vector3f;
-import com.space.engine.objects.Camera;
-import com.space.engine.objects.Enemies;
-import com.space.engine.objects.GameObject;
-import com.space.engine.objects.Invader;
+import com.space.engine.objects.*;
 import org.lwjgl.glfw.GLFW;
+import org.newdawn.slick.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +24,8 @@ public class Main implements Runnable {
 
     public Camera camera = new Camera(new Vector3f(10, -5, 10), new Vector3f(0, 0, 0));
     public Enemies enemies;
+    public GameObject player;
+    public Mesh meshPlayer = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\player.obj", "/textures/beautiful.png" ); //TODO consolidate
 
     public void start() {
         game = new Thread(this, "game");
@@ -40,6 +40,10 @@ public class Main implements Runnable {
         window.create();
         shader.create();
         enemies = new Enemies();
+        meshPlayer.create();
+        player = new GameObject(new Vector3f(0, -10, 0.1f), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1),meshPlayer); //TODO move to separate class
+
+        enemies.initRow(10);
         enemies.initRow(10);
         enemies.initRow(10);
         enemies.initRow(10);
@@ -69,13 +73,14 @@ public class Main implements Runnable {
         for(List<Invader> invaders: enemies.aliens.values()) {
             invaders.forEach(invader -> renderer.renderMesh(invader, camera));
         }
-
+        renderer.renderMesh( player , camera);
         window.swapBuffers();
     }
 
     private void close() {
         window.destroy();
         enemies.destroy();
+        player.destroy();
         shader.destroy();
     }
 

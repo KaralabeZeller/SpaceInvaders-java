@@ -7,6 +7,7 @@ public class GameObject {
 	private Vector3f position;
 	private Vector3f rotation;
 	private Vector3f scale;
+
 	private Mesh mesh;
 
 	public GameObject(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh) {
@@ -14,6 +15,12 @@ public class GameObject {
 		this.rotation = rotation;
 		this.scale = scale;
 		this.mesh = mesh;
+	}
+
+	public GameObject(Vector3f position, Vector3f rotation, Vector3f scale) {
+		this.rotation = rotation;
+		this.scale = scale;
+		this.position = position;
 	}
 
 	public void update() {
@@ -44,6 +51,10 @@ public class GameObject {
 		this.rotation = rotation;
 	}
 
+	public void setMesh(Mesh mesh) {
+		this.mesh = mesh;
+	}
+
 	public void moveX(float x) {
 		setPosition(new Vector3f(getPosition().getX() + x, getPosition().getY(), getPosition().getZ()));
 	}
@@ -54,6 +65,10 @@ public class GameObject {
 
 	public void rotateY(float y) {
 		setRotation(new Vector3f(getRotation().getX(), getRotation().getY(), getRotation().getZ() + y));
+	}
+
+	public void destroy() {
+		mesh.destroy();
 	}
 
 }

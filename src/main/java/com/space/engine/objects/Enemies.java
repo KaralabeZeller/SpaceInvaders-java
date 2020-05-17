@@ -18,6 +18,7 @@ public class Enemies {
     private Mesh invaderMesh3 = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader3.obj", "/textures/beautiful.png" ); //TODO consolidate
     private Mesh invaderMesh4 = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader4.obj", "/textures/beautiful.png" ); //TODO consolidate
     private Mesh invaderMesh5 = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader5.obj", "/textures/beautiful.png" ); //TODO consolidate
+    private Mesh invaderMesh6 = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader6.obj", "/textures/beautiful.png" ); //TODO consolidate
 
     private Invader sample;
     private boolean right = true;
@@ -30,6 +31,7 @@ public class Enemies {
         invaderMesh3.create();
         invaderMesh4.create();
         invaderMesh5.create();
+        invaderMesh6.create();
     }
 
     //TODO implement ability to add more rows
@@ -48,6 +50,8 @@ public class Enemies {
                 invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh4));
             if(rows == 4)
                 invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh5));
+            if(rows == 5)
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh6));
         }
 
         aliens.put(rows, invaders);
@@ -64,6 +68,7 @@ public class Enemies {
         invaderMesh3.destroy();
         invaderMesh4.destroy();
         invaderMesh5.destroy();
+        invaderMesh6.destroy();
     }
 
     public void move(float x) {
