@@ -8,13 +8,19 @@ import java.util.List;
 public class Weapons {
 
     public List<Laser> weapons;
+    private int shotDelay = 100;
+    private long lastShot = System.currentTimeMillis();
 
     public Weapons() {
         weapons = new ArrayList<>();
     }
 
     public void fire(Vector3f position) {
+        if(lastShot + shotDelay > System.currentTimeMillis())
+            return;
+
         weapons.add(new Laser(position));
+        lastShot = System.currentTimeMillis();
     }
 
 
