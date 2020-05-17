@@ -8,11 +8,11 @@ import com.space.engine.io.ModelLoader;
 import com.space.engine.io.Window;
 import com.space.engine.maths.Vector3f;
 import com.space.engine.objects.Camera;
+import com.space.engine.objects.Enemies;
 import com.space.engine.objects.GameObject;
 import com.space.engine.objects.Invader;
 import org.lwjgl.glfw.GLFW;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +23,9 @@ public class Main implements Runnable {
     public Shader shader;
     public final int WIDTH = 1280, HEIGHT = 760;
 
-    public Mesh mesh = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader1.obj", "/textures/beautiful.png" ); //TODO consolidate
-    public GameObject object = new GameObject(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), mesh);
-    public Camera camera = new Camera(new Vector3f(10, -5, 10), new Vector3f(0, 0, 0));
 
-    public List<GameObject> aliens;
+    public Camera camera = new Camera(new Vector3f(10, -5, 10), new Vector3f(0, 0, 0));
+    public Enemies enemies;
 
     public void start() {
         game = new Thread(this, "game");
@@ -40,17 +38,9 @@ public class Main implements Runnable {
         renderer = new Renderer(window, shader);
         window.setBackgroundColor(0.5f, 0.5f, 0.5f);
         window.create();
-        mesh.create();
         shader.create();
-
-        aliens = new ArrayList<>();
-
-        //TODO handle aliens in a separate class
-        int i = 0;
-        while(i < 10) {
-            aliens.add(new GameObject(new Vector3f(i*2, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), mesh));
-            i++;
-        }
+        enemies = new Enemies();
+        enemies.initRow(10);
     }
 
     public void run() {
@@ -65,26 +55,23 @@ public class Main implements Runnable {
     }
 
     private void update() {
-        moveAliens();
+        enemies.move(0.01f);
         window.update();
         camera.update();
     }
 
-    private void moveAliens() {
-        for(GameObject alien: aliens)
-            alien.moveX(0.01f);
-
-    }
 
     private void render() {
-        for(GameObject alien: aliens)
-            renderer.renderMesh(alien, camera);
+        for(List<Invader> invaders: enemies.aliens.values()) {
+            invaders.forEach(invader -> renderer.renderMesh(invader, camera));
+        }
+
         window.swapBuffers();
     }
 
     private void close() {
         window.destroy();
-        mesh.destroy();
+        enemies.destroy();
         shader.destroy();
     }
 
