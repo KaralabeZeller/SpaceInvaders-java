@@ -64,6 +64,7 @@ public class Main implements Runnable {
 
     private void update() {
         enemies.move(0.01f);
+        player.update();
         window.update();
         camera.update();
     }
