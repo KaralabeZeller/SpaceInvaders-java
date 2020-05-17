@@ -41,7 +41,7 @@ public class Main implements Runnable {
         shader.create();
         enemies = new Enemies();
         meshPlayer.create();
-        player = new GameObject(new Vector3f(0, -10, 0.1f), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1),meshPlayer); //TODO move to separate class
+        player = new GameObject(new Vector3f(0, -10, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1),meshPlayer); //TODO move to separate class
 
         enemies.initRow(10);
         enemies.initRow(10);
