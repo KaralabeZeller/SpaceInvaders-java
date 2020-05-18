@@ -28,6 +28,7 @@ public class Main implements Runnable {
     public Weapons weaponry;
     public Collision collision;
     public Blockades blockades;
+    public AlienAttack alienAttack;
 
 
     public void start() {
@@ -47,6 +48,7 @@ public class Main implements Runnable {
         weaponry = new Weapons();
         collision = new Collision();
         blockades = new Blockades(new Vector3f(0,-10f,0));
+        alienAttack = new AlienAttack(enemies, 10);
 
         enemies.initRow(10);
         enemies.initRow(10);
@@ -63,7 +65,7 @@ public class Main implements Runnable {
             render();
             if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) window.setFullscreen(!window.isFullscreen());
             if (Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) window.mouseState(true);
-            if (Input.isKeyDown(GLFW.GLFW_KEY_SPACE)) weaponry.fire(player.getPosition()); //TODO implement collision detection
+            if (Input.isKeyDown(GLFW.GLFW_KEY_SPACE)) weaponry.fire(player.getPosition());
         }
         close();
     }
@@ -72,9 +74,11 @@ public class Main implements Runnable {
         enemies.move(0.01f);
         player.update();
         weaponry.update();
-
+        alienAttack.update();
+        alienAttack.lasers.forEach(invaderLaser -> invaderLaser.moveY());
         collision.detect(enemies, weaponry);
         collision.detect(blockades, weaponry);
+        collision.detect(blockades, alienAttack);
         window.update();
         camera.update();
     }
@@ -87,6 +91,7 @@ public class Main implements Runnable {
 
         weaponry.weapons.forEach(weapon->renderer.renderMesh(weapon, camera));
         blockades.blockades.forEach(blockade -> blockade.pixels.forEach(pixel->renderer.renderMesh(pixel, camera)));
+        alienAttack.lasers.forEach(invaderLaser -> renderer.renderMesh(invaderLaser, camera));
         renderer.renderMesh(player , camera);
         window.swapBuffers();
     }
@@ -98,6 +103,7 @@ public class Main implements Runnable {
         shader.destroy();
         weaponry.destroy();
         blockades.destroy();
+        alienAttack.destroy();
     }
 
     public static void main(String[] args) {

@@ -4,15 +4,16 @@ import com.space.engine.maths.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Weapons {
 
-    public List<Laser> weapons;
+    public ConcurrentLinkedQueue<Laser> weapons;
     private int shotDelay = 100;
     private long lastShot = System.currentTimeMillis();
 
     public Weapons() {
-        weapons = new ArrayList<>();
+        weapons = new ConcurrentLinkedQueue<>();
     }
 
     public void fire(Vector3f position) {
@@ -26,7 +27,11 @@ public class Weapons {
 
     public void update() {
         weapons.forEach(weapon->weapon.update());
-        weapons.remove(weapons.stream().filter(weapon->!weapon.isVisible())); // TODO check if this works
+       for(Laser laser: weapons) {
+           if(!laser.isVisible()) {
+               weapons.remove(laser);
+           }
+       }
     }
 
 

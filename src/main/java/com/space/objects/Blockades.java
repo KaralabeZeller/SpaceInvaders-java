@@ -26,4 +26,13 @@ public class Blockades {
     public void destroy(){
         blockades.forEach(Blockade::destroy);
     }
+
+    public void update() {
+        for(Blockade block: blockades) {
+            for(Pixel pixel: block.pixels) {
+                if(!pixel.isVisible())
+                    block.pixels.remove(pixel);
+            }
+        }
+    }
 }

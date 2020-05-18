@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Enemies {
 
@@ -111,4 +112,15 @@ public class Enemies {
             lastMesh = System.currentTimeMillis();
         }
     }
+
+    public List<Invader> getAliveInvaders(int row) {
+        return aliens.get(row).stream().filter(invader -> invader.isVisible()).collect(Collectors.toList());
+
+    }
+
+    public boolean isRowEmpty(int row) {
+        return aliens.get(row).stream().filter(invader -> invader.isVisible()).count() > 0 ? false : true;
+    }
+
+
 }
