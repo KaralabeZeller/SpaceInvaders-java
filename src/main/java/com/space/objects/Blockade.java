@@ -20,40 +20,40 @@ public class Blockade {
     private void initBlocks() {
 
         for(int i = 0; i < 10; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.6f, position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.6f, position.getZ())));
         }
         for(int i = 0; i < 10; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ (i+20)*0.1f, position.getY()-0.6f, position.getX())));
-        }
-
-        for(int i = 0; i < 10; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.5f, position.getX())));
-        }
-        for(int i = 0; i < 10; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ (i+20)*0.1f, position.getY()-0.5f, position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ (i+20)*0.1f, position.getY()-0.6f, position.getZ())));
         }
 
         for(int i = 0; i < 10; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.4f, position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.5f, position.getZ())));
         }
         for(int i = 0; i < 10; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ (i+20)*0.1f, position.getY()-0.4f, position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ (i+20)*0.1f, position.getY()-0.5f, position.getZ())));
+        }
+
+        for(int i = 0; i < 10; i++) {
+            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.4f, position.getZ())));
+        }
+        for(int i = 0; i < 10; i++) {
+            pixels.add(new Pixel(new Vector3f(position.getX()+ (i+20)*0.1f, position.getY()-0.4f, position.getZ())));
         }
 
         for(int i = 0; i < 30; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.3f, position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.3f, position.getZ())));
         }
 
         for(int i = 0; i < 30; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.2f, position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.2f, position.getZ())));
         }
 
         for(int i = 0; i < 30; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.1f, position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY()-0.1f, position.getZ())));
         }
 
         for(int i = 0; i < 30; i++) {
-            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY(), position.getX())));
+            pixels.add(new Pixel(new Vector3f(position.getX()+ i*0.1f, position.getY(), position.getZ())));
         }
 
     }

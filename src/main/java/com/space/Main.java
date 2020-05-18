@@ -27,7 +27,7 @@ public class Main implements Runnable {
     public Player player;
     public Weapons weaponry;
     public Collision collision;
-    public Blockade blockade; // TODO make a list from it
+    public Blockades blockades;
 
 
     public void start() {
@@ -46,7 +46,7 @@ public class Main implements Runnable {
         player = new Player();
         weaponry = new Weapons();
         collision = new Collision();
-        blockade = new Blockade(new Vector3f(0,-10f,0));
+        blockades = new Blockades(new Vector3f(0,-10f,0));
 
         enemies.initRow(10);
         enemies.initRow(10);
@@ -74,7 +74,7 @@ public class Main implements Runnable {
         weaponry.update();
 
         collision.detect(enemies, weaponry);
-        collision.detect(blockade, weaponry);
+        collision.detect(blockades, weaponry);
         window.update();
         camera.update();
     }
@@ -86,7 +86,7 @@ public class Main implements Runnable {
         }
 
         weaponry.weapons.forEach(weapon->renderer.renderMesh(weapon, camera));
-        blockade.pixels.forEach(pixel->renderer.renderMesh(pixel, camera));
+        blockades.blockades.forEach(blockade -> blockade.pixels.forEach(pixel->renderer.renderMesh(pixel, camera)));
         renderer.renderMesh(player , camera);
         window.swapBuffers();
     }
@@ -97,7 +97,7 @@ public class Main implements Runnable {
         player.destroy();
         shader.destroy();
         weaponry.destroy();
-        blockade.destroy();
+        blockades.destroy();
     }
 
     public static void main(String[] args) {

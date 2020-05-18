@@ -20,8 +20,8 @@ public class Collision {
         }
     }
 
-    public void detect(Blockade blockade, Weapons weapons) {
-        blockade.pixels.forEach(pixel->weapons.weapons.forEach(laser->process(pixel, laser)));
+    public void detect(Blockades blockades, Weapons weapons) {
+        blockades.blockades.forEach(blockade -> blockade.pixels.forEach(pixel->weapons.weapons.forEach(laser->process(pixel, laser))));
     }
 
     private void process(Invader invader, Laser laser) { //TODO detect collision -> different width of invaders
