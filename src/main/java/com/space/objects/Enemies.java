@@ -13,7 +13,7 @@ import java.util.Map;
 public class Enemies {
 
     private int rows;
-    public Map<Integer, List<Invader>> aliens ;
+    public Map<Integer, List<Invader>> aliens ; // TODO invader 1 and 2 models are not in the same Y coordinate
     private Mesh invaderMesh1 = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader1.obj", "/textures/beautiful.png" ); //TODO consolidate
     private Mesh invaderMesh2 = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader2.obj", "/textures/beautiful.png" ); //TODO consolidate
     private Mesh invaderMesh3 = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\invader3.obj", "/textures/beautiful.png" ); //TODO consolidate

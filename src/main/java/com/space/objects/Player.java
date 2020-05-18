@@ -14,7 +14,7 @@ public class Player extends GameObject {
     private float moveSpeed = 0.2f;
 
     public Player() {
-        super(new Vector3f(0, -10, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
+        super(new Vector3f(0, -12.5f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
         mesh = ModelLoader.loadModel("C:\\Users\\gfert\\IdeaProjects\\SpaceInvaders\\src\\main\\resources\\models\\player.obj", "/textures/beautiful.png" ); //TODO consolidate
         setMesh(mesh);
         setObjecType(Constants.ObjecType.PLAYER);

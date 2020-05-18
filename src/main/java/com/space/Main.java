@@ -25,7 +25,7 @@ public class Main implements Runnable {
     public final int WIDTH = 1280, HEIGHT = 760;
 
 
-    public Camera camera = new Camera(new Vector3f(10, -5, 10), new Vector3f(0, 0, 0));
+    public Camera camera = new Camera(new Vector3f(10, -6, 10), new Vector3f(0, 0, 0)); // TODO move everything relative to Y coordinate (Y+ instead of Y- (Y=0 -> player position))
     public Enemies enemies;
     public Player player;
     public Weapons weaponry;
