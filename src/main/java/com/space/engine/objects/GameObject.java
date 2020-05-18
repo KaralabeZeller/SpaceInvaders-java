@@ -14,6 +14,9 @@ public class GameObject {
 	private Constants.ObjecType objecType;
 
 	private Mesh mesh;
+	private Mesh meshAlternate; // TODO implement - Array of mesh instead of separate variables
+
+	private boolean alternateMesh = false;
 
 	public GameObject(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh) {
 		this.position = position;
@@ -29,6 +32,18 @@ public class GameObject {
 		this.rotation = rotation;
 		this.scale = scale;
 		this.position = position;
+
+		setVisible(true);
+	}
+
+	public GameObject(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh1, Mesh mesh2) {
+		this.rotation = rotation;
+		this.scale = scale;
+		this.position = position;
+		this.mesh = mesh1;
+		this.meshAlternate = mesh2;
+		this.mesh.create();
+		this.meshAlternate.create();
 
 		setVisible(true);
 	}
@@ -50,7 +65,14 @@ public class GameObject {
 	}
 
 	public Mesh getMesh() {
-		return mesh;
+		if(meshAlternate == null)
+			return mesh;
+
+		if(alternateMesh)
+			return meshAlternate;
+		else
+			return mesh;
+
 	}
 
 	public void setPosition(Vector3f position) {
@@ -80,6 +102,9 @@ public class GameObject {
 
 	public void destroy() {
 		mesh.destroy();
+
+		if(meshAlternate != null)
+			meshAlternate.destroy();
 	}
 
 	public boolean isVisible() {
@@ -96,6 +121,14 @@ public class GameObject {
 
 	public void setObjecType(Constants.ObjecType objecType) {
 		this.objecType = objecType;
+	}
+
+	public boolean isAlternateMesh() {
+		return alternateMesh;
+	}
+
+	public void setAlternateMesh(boolean alternateMesh) {
+		this.alternateMesh = alternateMesh;
 	}
 
 }

@@ -25,6 +25,9 @@ public class Enemies {
     private boolean right = true;
     private float moveSpeedY = -0.2f;
 
+    private int meshTimeout = 1000;
+    private long lastMesh = System.currentTimeMillis();
+
     public Enemies() {
         rows = 0;
         aliens = new HashMap<>();
@@ -37,17 +40,17 @@ public class Enemies {
 
         for(int i = 0; i < count; i++) {
             if(rows == 0)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh1, Constants.ObjecType.MONSTER));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh1, invaderMesh2, Constants.ObjecType.MONSTER));
             if(rows == 1)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh2, Constants.ObjecType.MONSTER));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh3, invaderMesh4, Constants.ObjecType.MONSTER));
             if(rows == 2)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh3, Constants.ObjecType.MONSTER));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh5, invaderMesh6, Constants.ObjecType.MONSTER));
             if(rows == 3)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh4, Constants.ObjecType.MONSTER));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh3, invaderMesh4, Constants.ObjecType.MONSTER));
             if(rows == 4)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh5, Constants.ObjecType.MONSTER));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh5, invaderMesh6, Constants.ObjecType.MONSTER));
             if(rows == 5)
-                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh6, Constants.ObjecType.MONSTER));
+                invaders.add(new Invader(new Vector3f(i*2, rows*-1.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), invaderMesh1, invaderMesh2, Constants.ObjecType.MONSTER));
         }
 
         aliens.put(rows, invaders);
@@ -93,6 +96,19 @@ public class Enemies {
             for(List<Invader> invaders: aliens.values()) {
                 invaders.forEach(invader -> invader.setPosition(new Vector3f(invader.getPosition().getX() - x, invader.getPosition().getY(), invader.getPosition().getZ())));
             }
+        }
+
+        if(lastMesh + meshTimeout <= System.currentTimeMillis()) {
+            for(List<Invader> invaders: aliens.values()) {
+                for(Invader invader: invaders) {
+                    if (invader.isAlternateMesh()) {
+                        invader.setAlternateMesh(false);
+                    } else {
+                        invader.setAlternateMesh(true);
+                    }
+                }
+            }
+            lastMesh = System.currentTimeMillis();
         }
     }
 }

@@ -15,4 +15,9 @@ public class Invader extends GameObject {
         setObjecType(type);
     }
 
+    public Invader(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh1, Mesh mesh2, Constants.ObjecType monster) {
+        super(position,rotation,scale,mesh1, mesh2);
+        initialX = position.getX();
+        setObjecType(monster);
+    }
 }
