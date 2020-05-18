@@ -9,10 +9,7 @@ import com.space.engine.io.ModelLoader;
 import com.space.engine.io.Window;
 import com.space.engine.maths.Vector3f;
 import com.space.engine.objects.*;
-import com.space.objects.Enemies;
-import com.space.objects.Invader;
-import com.space.objects.Player;
-import com.space.objects.Weapons;
+import com.space.objects.*;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
@@ -30,6 +27,7 @@ public class Main implements Runnable {
     public Player player;
     public Weapons weaponry;
     public Collision collision;
+    public Blockade blockade; // TODO make a list from it
 
 
     public void start() {
@@ -48,6 +46,7 @@ public class Main implements Runnable {
         player = new Player();
         weaponry = new Weapons();
         collision = new Collision();
+        blockade = new Blockade(new Vector3f(0,-10f,0));
 
         enemies.initRow(10);
         enemies.initRow(10);
@@ -73,7 +72,9 @@ public class Main implements Runnable {
         enemies.move(0.01f);
         player.update();
         weaponry.update();
+
         collision.detect(enemies, weaponry);
+        collision.detect(blockade, weaponry);
         window.update();
         camera.update();
     }
@@ -85,6 +86,7 @@ public class Main implements Runnable {
         }
 
         weaponry.weapons.forEach(weapon->renderer.renderMesh(weapon, camera));
+        blockade.pixels.forEach(pixel->renderer.renderMesh(pixel, camera));
         renderer.renderMesh(player , camera);
         window.swapBuffers();
     }
@@ -95,6 +97,7 @@ public class Main implements Runnable {
         player.destroy();
         shader.destroy();
         weaponry.destroy();
+        blockade.destroy();
     }
 
     public static void main(String[] args) {

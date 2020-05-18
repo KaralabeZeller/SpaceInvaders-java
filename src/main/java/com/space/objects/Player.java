@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
 public class Player extends GameObject {
 
     public Mesh mesh;
-    private float moveSpeed = 0.2f;
+    private float moveSpeed = 0.15f;
 
     public Player() {
         super(new Vector3f(0, -12.5f, 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
